@@ -1,7 +1,7 @@
 import { HasContractFilterEnum, IUserModel } from '../../models/user.models';
 import { UserService } from './../../services/user.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, Subscription } from 'rxjs';
 import { filterFirstAndLastName } from 'src/app/helpers/helpers';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,9 +13,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CharacterSearchComponent implements OnInit, OnDestroy {
 
-  filters = this.fb.group({
-    searchTerm: '',
-    filterHasContract: HasContractFilterEnum.All
+  filters = new FormGroup({
+    searchTerm: new FormControl<string>('', { nonNullable: true }),
+    filterHasContract: new FormControl<HasContractFilterEnum>(HasContractFilterEnum.All, { nonNullable: true }),
   })
 
   availableUsers: IUserModel[] = [];
@@ -27,7 +27,7 @@ export class CharacterSearchComponent implements OnInit, OnDestroy {
   selectedUser?: IUserModel;
   sub = new Subscription();
 
-  constructor(private userService: UserService, private fb: FormBuilder, private modalService: NgbModal) { }
+  constructor(private userService: UserService, private modalService: NgbModal) { }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
