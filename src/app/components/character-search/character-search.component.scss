@@ -1,0 +1,57 @@
+button:disabled {
+    color: gray;
+
+    &:hover {
+        background-color: initial;
+    }
+}
+
+.no-results {
+    text-align: center;
+}
+
+.name {
+    img {
+        width: 64px;
+        height: 48px;
+        object-fit: contain;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+}
+
+.options {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+
+    .form-control {
+        width: 400px;
+        flex-grow: 1;
+    }
+
+    .form-select {
+        width: 200px;
+    }
+}
+
+.modal-body {
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .details {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        column-gap: 10px;
+
+        div:nth-child(odd) {
+            font-weight: bold;
+        }
+    }
+}
